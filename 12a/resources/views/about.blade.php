@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>{{ $about['meta_title'] }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -618,14 +618,13 @@
 
     <!-- NAV -->
     <nav>
-        <a href="#" class="nav-logo">Juli<span>.</span></a>
+        <a href="#" class="nav-logo">{{ $about['nav']['logo_text'] }}<span>{{ $about['nav']['logo_accent'] }}</span></a>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            @foreach ($about['nav']['links'] as $navLink)
+            <li><a href="{{ $navLink['href'] }}">{{ $navLink['label'] }}</a></li>
+            @endforeach
         </ul>
-        <a href="#contact" class="btn btn-primary" style="padding: 10px 22px;">Hire Me</a>
+        <a href="{{ $about['nav']['cta_href'] }}" class="btn btn-primary" style="padding: 10px 22px;">{{ $about['nav']['cta_label'] }}</a>
     </nav>
 
     <!-- HERO -->
@@ -633,27 +632,26 @@
         <div class="hero-glow"></div>
         <div class="hero-inner">
             <div class="hero-text">
-                <div class="hero-tag">Available for Work</div>
+                <div class="hero-tag">{{ $about['hero']['tag'] }}</div>
                 <h1 class="hero-name">
-                    Halo, Saya<br>
-                    <span class="line2">Juli Ayu Audia</span>
+                    {{ $about['hero']['title_line_1'] }}<br>
+                    <span class="line2">{{ $about['hero']['title_line_2'] }}</span>
                 </h1>
                 <p class="hero-desc">
-                    Front-End developer yang bersemangat membangun pengalaman digital yang bermakna.
-                    Penuh minat untuk terus belajar di banyak bidang.
+                    {{ $about['hero']['description'] }}
                 </p>
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">Lihat Project</a>
-                    <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+                    <a href="{{ $about['hero']['primary_cta_href'] }}" class="btn btn-primary">{{ $about['hero']['primary_cta_label'] }}</a>
+                    <a href="{{ $about['hero']['secondary_cta_href'] }}" class="btn btn-outline">{{ $about['hero']['secondary_cta_label'] }}</a>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="avatar-wrap">
                     <div class="avatar-ring"></div>
                     <div class="avatar-img">
-                        <img src="{{ asset('img/foto.jpeg') }}" alt="Foto Profil"
+                        <img src="{{ asset('img/foto.jpeg') }}" alt="{{ $about['hero']['avatar_alt'] }}"
                              onerror="this.style.display='none'; document.querySelector('.avatar-placeholder').style.display='block'">
-                        <span class="avatar-placeholder" style="display:none">JA</span>
+                        <span class="avatar-placeholder" style="display:none">{{ $about['hero']['avatar_initials'] }}</span>
                     </div>
                 </div>
             </div>
@@ -662,30 +660,20 @@
 
     <!-- STATS -->
     <div class="stats-strip fade-up">
+        @foreach ($about['stats'] as $stat)
         <div class="stat-item">
-            <div class="stat-num">1+</div>
-            <div class="stat-label">Tahun Pengalaman</div>
+            <div class="stat-num">{{ $stat['number'] }}</div>
+            <div class="stat-label">{{ $stat['label'] }}</div>
         </div>
-        <div class="stat-item">
-            <div class="stat-num">10+</div>
-            <div class="stat-label">Project Selesai</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-num">10+</div>
-            <div class="stat-label">Klien Puas</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-num">∞</div>
-            <div class="stat-label">Semangat Belajar</div>
-        </div>
+        @endforeach
     </div>
 
 <!-- SKILLS -->
 <section id="skills">
-    <div class="section-label fade-up">Keahlian</div>
-    <h2 class="section-title fade-up">Tech Stack &<br>Kemampuan Saya</h2>
+    <div class="section-label fade-up">{{ $about['skills_section']['label'] }}</div>
+    <h2 class="section-title fade-up">{{ $about['skills_section']['title_line_1'] }}<br>{{ $about['skills_section']['title_line_2'] }}</h2>
     <div class="skills-grid">
-        @foreach ($skills as $skill)
+        @forelse ($skills as $skill)
         <div class="skill-card fade-up">
             <div class="skill-name">{{ $skill->name }}</div>
             <div class="skill-desc">{{ $skill->description }}</div>
@@ -693,16 +681,24 @@
                 <div class="skill-bar" style="width: {{ $skill->level }}%"></div>
             </div>
         </div>
-        @endforeach
+        @empty
+        <div class="skill-card fade-up">
+            <div class="skill-name">Belum Ada Data</div>
+            <div class="skill-desc">Tambahkan data skill untuk menampilkan daftar keahlian.</div>
+            <div class="skill-bar-wrap">
+                <div class="skill-bar" style="width: 0%"></div>
+            </div>
+        </div>
+        @endforelse
     </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-    <div class="section-label fade-up">Portfolio</div>
-    <h2 class="section-title fade-up">Project yang<br>Pernah Saya Buat</h2>
+    <div class="section-label fade-up">{{ $about['projects_section']['label'] }}</div>
+    <h2 class="section-title fade-up">{{ $about['projects_section']['title_line_1'] }}<br>{{ $about['projects_section']['title_line_2'] }}</h2>
     <div class="projects-grid">
-        @foreach ($projects as $project)
+        @forelse ($projects as $project)
         <div class="project-card fade-up">
             <div class="project-thumb">{{ $project->emoji }}</div>
             <div class="project-body">
@@ -715,27 +711,37 @@
                 <p class="project-desc">{{ $project->description }}</p>
             </div>
         </div>
-        @endforeach
+        @empty
+        <div class="project-card fade-up">
+            <div class="project-thumb">—</div>
+            <div class="project-body">
+                <div class="project-tags">
+                    <span class="tag">Kosong</span>
+                </div>
+                <div class="project-title">Belum Ada Project</div>
+                <p class="project-desc">Tambahkan data project untuk menampilkan portfolio.</p>
+            </div>
+        </div>
+        @endforelse
     </div>
 </section>
 
     <!-- CONTACT -->
     <section id="contact">
         <div class="contact-wrap fade-up">
-            <div class="section-label" style="justify-content: center; display: flex;">Kontak</div>
-            <h2 class="contact-title">Mari Bekerja<br>Sama!</h2>
-            <p class="contact-sub">Terbuka untuk peluang freelance, kolaborasi, atau sekadar ngobrol soal teknologi.</p>
+            <div class="section-label" style="justify-content: center; display: flex;">{{ $about['contact']['label'] }}</div>
+            <h2 class="contact-title">{{ $about['contact']['title_line_1'] }}<br>{{ $about['contact']['title_line_2'] }}</h2>
+            <p class="contact-sub">{{ $about['contact']['subtitle'] }}</p>
             <div class="social-links">
-                <a href="mailto:juliayuaudia@gmail.com" class="social-btn">✉ Email</a>
-                <a href="https://github.com/Jujustxr" target="_blank" class="social-btn">⌥ GitHub</a>
-                <a href="https://linkedin.com/in/JuliAyuAudia" target="_blank" class="social-btn">◈ LinkedIn</a>
-                <a href="https://instagram.com/juliiayd" target="_blank" class="social-btn">◎ Instagram</a>
+                @foreach ($about['contact']['social_links'] as $social)
+                <a href="{{ $social['href'] }}" @if (str_starts_with($social['href'], 'http')) target="_blank" @endif class="social-btn">{{ $social['label'] }}</a>
+                @endforeach
             </div>
         </div>
     </section>
 
     <footer>
-        <p>© {{ date('Y') }} <span>Juli Ayu Audia</span>. All rights reserved.</p>
+        <p>© {{ date('Y') }} <span>{{ $about['footer_name'] }}</span>. All rights reserved.</p>
     </footer>
 
     <script>
