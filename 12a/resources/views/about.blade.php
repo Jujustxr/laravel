@@ -680,32 +680,45 @@
         </div>
     </div>
 
-    <!-- SKILLS -->
-   @foreach ($skills as $skill)
-<div class="skill-card fade-up">
-    <div class="skill-name">{{ $skill->name }}</div>
-    <div class="skill-desc">{{ $skill->description }}</div>
-    <div class="skill-bar-wrap">
-        <div class="skill-bar" style="width: {{ $skill->level }}%"></div>
+<!-- SKILLS -->
+<section id="skills">
+    <div class="section-label fade-up">Keahlian</div>
+    <h2 class="section-title fade-up">Tech Stack &<br>Kemampuan Saya</h2>
+    <div class="skills-grid">
+        @foreach ($skills as $skill)
+        <div class="skill-card fade-up">
+            <div class="skill-name">{{ $skill->name }}</div>
+            <div class="skill-desc">{{ $skill->description }}</div>
+            <div class="skill-bar-wrap">
+                <div class="skill-bar" style="width: {{ $skill->level }}%"></div>
+            </div>
+        </div>
+        @endforeach
     </div>
-</div>
-@endforeach
+</section>
 
     <!-- PROJECTS -->
-@foreach ($projects as $project)
-<div class="project-card fade-up">
-    <div class="project-thumb">{{ $project->emoji }}</div>
-    <div class="project-body">
-        <div class="project-tags">
-            @foreach ($project->tags as $tag)
-                <span class="tag">{{ $tag }}</span>
-            @endforeach
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="section-label fade-up">Portfolio</div>
+    <h2 class="section-title fade-up">Project yang<br>Pernah Saya Buat</h2>
+    <div class="projects-grid">
+        @foreach ($projects as $project)
+        <div class="project-card fade-up">
+            <div class="project-thumb">{{ $project->emoji }}</div>
+            <div class="project-body">
+                <div class="project-tags">
+                    @foreach ($project->tags as $tag)
+                        <span class="tag">{{ $tag }}</span>
+                    @endforeach
+                </div>
+                <div class="project-title">{{ $project->title }}</div>
+                <p class="project-desc">{{ $project->description }}</p>
+            </div>
         </div>
-        <div class="project-title">{{ $project->title }}</div>
-        <p class="project-desc">{{ $project->description }}</p>
+        @endforeach
     </div>
-</div>
-@endforeach
+</section>
 
     <!-- CONTACT -->
     <section id="contact">
