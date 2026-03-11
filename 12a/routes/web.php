@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\LoadingController;
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Loading screen → halaman utama
+Route::get('/', [LoadingController::class, 'index']);
 
-Route::get('/about', function () {
-    return view('about');
-});
+// Portfolio utama
+Route::get('/about', [AboutController::class, 'index'])->name('about');

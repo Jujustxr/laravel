@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #0a0a0f;
-            --surface: #13131a;
-            --border: #1e1e2e;
-            --accent: #7c6aff;
-            --accent2: #ff6a6a;
-            --text: #e8e8f0;
-            --muted: #6b6b80;
+            --bg:       #0a0a0a;
+            --surface:  #111111;
+            --border:   #1e1a1c;
+            --accent:   #ff2d78;
+            --accent2:  #ff6fa8;
+            --text:     #f5f0f2;
+            --muted:    #6b5d62;
         }
 
         html { scroll-behavior: smooth; }
@@ -52,6 +52,18 @@
             opacity: 0.4;
         }
 
+        /* --- CORNER ACCENTS (from loading screen) --- */
+        .corner {
+            position: fixed;
+            width: 20px; height: 20px;
+            z-index: 200;
+            pointer-events: none;
+        }
+        .corner.tl { top: 28px; left: 28px; border-top: 1px solid rgba(255,45,120,0.3); border-left: 1px solid rgba(255,45,120,0.3); }
+        .corner.tr { top: 28px; right: 28px; border-top: 1px solid rgba(255,45,120,0.3); border-right: 1px solid rgba(255,45,120,0.3); }
+        .corner.bl { bottom: 28px; left: 28px; border-bottom: 1px solid rgba(255,45,120,0.3); border-left: 1px solid rgba(255,45,120,0.3); }
+        .corner.br { bottom: 28px; right: 28px; border-bottom: 1px solid rgba(255,45,120,0.3); border-right: 1px solid rgba(255,45,120,0.3); }
+
         /* --- NAV --- */
         nav {
             position: fixed;
@@ -62,28 +74,31 @@
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            background: rgba(10,10,15,0.8);
+            border-bottom: 1px solid rgba(255,45,120,0.08);
+            background: rgba(10,10,10,0.85);
         }
 
         .nav-logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 20px;
-            letter-spacing: -0.5px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 22px;
+            letter-spacing: 0.08em;
             color: var(--text);
             text-decoration: none;
         }
 
-        .nav-logo span { color: var(--accent); }
+        .nav-logo span { color: var(--accent); font-style: normal; }
 
         .nav-links { display: flex; gap: 36px; list-style: none; }
         .nav-links a {
             color: var(--muted);
             text-decoration: none;
             font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 0.02em;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 12px;
             transition: color 0.2s;
         }
         .nav-links a:hover { color: var(--text); }
@@ -100,16 +115,16 @@
 
         .hero-glow {
             position: absolute;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(124,106,255,0.15) 0%, transparent 70%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(255,45,120,0.08) 0%, transparent 70%);
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             pointer-events: none;
-            animation: pulse 4s ease-in-out infinite;
+            animation: pulse 5s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
             50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
         }
 
@@ -128,11 +143,12 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-size: 12px;
-            letter-spacing: 0.12em;
+            font-size: 11px;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
-            font-weight: 600;
+            font-weight: 400;
+            font-family: 'Montserrat', sans-serif;
             margin-bottom: 24px;
         }
 
@@ -144,20 +160,26 @@
 
         .hero-name {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(48px, 6vw, 80px);
+            font-size: clamp(44px, 6vw, 76px);
             font-weight: 800;
             line-height: 1.0;
             letter-spacing: -2px;
             margin-bottom: 24px;
         }
 
-        .hero-name .line2 { color: var(--accent); }
+        .hero-name .line2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+        }
 
         .hero-desc {
             color: var(--muted);
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 300;
-            line-height: 1.75;
+            line-height: 1.8;
             margin-bottom: 40px;
             max-width: 480px;
         }
@@ -170,16 +192,18 @@
 
         .btn {
             padding: 14px 28px;
-            border-radius: 8px;
+            border-radius: 6px;
             font-family: 'DM Sans', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.06em;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.25s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            text-transform: uppercase;
         }
 
         .btn-primary {
@@ -187,14 +211,22 @@
             color: #fff;
             border: none;
         }
-        .btn-primary:hover { background: #6a58ef; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,106,255,0.3); }
+        .btn-primary:hover {
+            background: #e8206a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255,45,120,0.3);
+        }
 
         .btn-outline {
             background: transparent;
             color: var(--text);
-            border: 1px solid var(--border);
+            border: 1px solid rgba(255,45,120,0.25);
         }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
 
         /* --- HERO IMAGE --- */
         .hero-visual {
@@ -205,26 +237,26 @@
 
         .avatar-wrap {
             position: relative;
-            width: 340px; height: 340px;
+            width: 320px; height: 320px;
         }
 
         .avatar-ring {
             position: absolute;
             inset: -20px;
             border-radius: 50%;
-            border: 1px solid rgba(124,106,255,0.3);
+            border: 1px solid rgba(255,45,120,0.25);
             animation: spin 20s linear infinite;
         }
 
         .avatar-ring::after {
             content: '';
             position: absolute;
-            width: 12px; height: 12px;
+            width: 10px; height: 10px;
             background: var(--accent);
             border-radius: 50%;
-            top: 20px; left: 50%;
+            top: 22px; left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 0 20px var(--accent);
+            box-shadow: 0 0 16px 4px rgba(255,45,120,0.6);
         }
 
         @keyframes spin { to { transform: rotate(360deg); } }
@@ -233,19 +265,25 @@
             width: 100%; height: 100%;
             border-radius: 50%;
             background: var(--surface);
-            border: 3px solid var(--border);
+            border: 2px solid rgba(255,45,120,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
 
+        .avatar-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
         .avatar-placeholder {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 96px;
-            font-weight: 800;
+            font-weight: 300;
+            font-style: italic;
             color: var(--accent);
-            opacity: 0.6;
+            opacity: 0.4;
             user-select: none;
         }
 
@@ -257,8 +295,8 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
+            background: rgba(255,45,120,0.1);
+            border: 1px solid rgba(255,45,120,0.12);
             border-radius: 16px;
             overflow: hidden;
         }
@@ -267,22 +305,26 @@
             background: var(--surface);
             padding: 36px 28px;
             text-align: center;
+            transition: background 0.3s;
         }
 
+        .stat-item:hover { background: #161010; }
+
         .stat-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 42px;
-            font-weight: 800;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 300;
+            font-style: italic;
             color: var(--accent);
             line-height: 1;
             margin-bottom: 8px;
         }
 
         .stat-label {
-            font-size: 13px;
+            font-size: 11px;
             color: var(--muted);
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.12em;
         }
 
         /* --- SECTIONS --- */
@@ -293,12 +335,12 @@
         }
 
         .section-label {
-            font-family: 'Syne', sans-serif;
-            font-size: 12px;
-            letter-spacing: 0.15em;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
-            font-weight: 600;
+            font-weight: 400;
             margin-bottom: 16px;
         }
 
@@ -325,38 +367,47 @@
             padding: 28px;
             transition: all 0.3s ease;
             cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .skill-card:hover {
-            border-color: var(--accent);
+            border-color: rgba(255,45,120,0.3);
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(124,106,255,0.15);
+            box-shadow: 0 12px 40px rgba(255,45,120,0.1);
         }
 
-        .skill-icon {
-            font-size: 28px;
-            margin-bottom: 16px;
-            display: block;
-        }
+        .skill-card:hover::before { opacity: 1; }
 
         .skill-name {
             font-family: 'Syne', sans-serif;
             font-weight: 700;
             font-size: 16px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            color: var(--text);
         }
 
         .skill-desc {
             font-size: 13px;
             color: var(--muted);
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         .skill-bar-wrap {
-            margin-top: 16px;
+            margin-top: 18px;
             background: var(--border);
             border-radius: 100px;
-            height: 3px;
+            height: 2px;
             overflow: hidden;
         }
 
@@ -364,7 +415,6 @@
             height: 100%;
             background: linear-gradient(90deg, var(--accent), var(--accent2));
             border-radius: 100px;
-            transition: width 1s ease;
         }
 
         /* --- PROJECTS --- */
@@ -383,14 +433,14 @@
         }
 
         .project-card:hover {
-            border-color: rgba(124,106,255,0.5);
+            border-color: rgba(255,45,120,0.3);
             transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 60px rgba(255,45,120,0.08);
         }
 
         .project-thumb {
             height: 180px;
-            background: linear-gradient(135deg, var(--surface), var(--border));
+            background: linear-gradient(135deg, var(--surface), #1a0f14);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -404,7 +454,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(124,106,255,0.08), rgba(255,106,106,0.08));
+            background: linear-gradient(135deg, rgba(255,45,120,0.06), rgba(255,111,168,0.04));
         }
 
         .project-body { padding: 24px; }
@@ -417,13 +467,15 @@
         }
 
         .tag {
-            font-size: 11px;
+            font-size: 10px;
             padding: 4px 10px;
             border-radius: 100px;
-            background: rgba(124,106,255,0.1);
+            background: rgba(255,45,120,0.08);
             color: var(--accent);
-            font-weight: 500;
-            letter-spacing: 0.04em;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,45,120,0.15);
         }
 
         .project-title {
@@ -434,15 +486,15 @@
         }
 
         .project-desc {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--muted);
-            line-height: 1.65;
+            line-height: 1.7;
         }
 
         /* --- CONTACT --- */
         .contact-wrap {
             background: var(--surface);
-            border: 1px solid var(--border);
+            border: 1px solid rgba(255,45,120,0.12);
             border-radius: 24px;
             padding: 60px;
             text-align: center;
@@ -454,8 +506,17 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 50% 0%, rgba(124,106,255,0.1) 0%, transparent 60%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(255,45,120,0.07) 0%, transparent 60%);
             pointer-events: none;
+        }
+
+        /* decorative horizontal line inside contact */
+        .contact-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 10%; right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
         .contact-title {
@@ -468,14 +529,16 @@
 
         .contact-sub {
             color: var(--muted);
-            font-size: 16px;
+            font-size: 15px;
+            font-weight: 300;
             margin-bottom: 36px;
+            letter-spacing: 0.02em;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
@@ -484,19 +547,21 @@
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            color: var(--text);
+            border-radius: 6px;
+            border: 1px solid rgba(255,45,120,0.2);
+            color: var(--muted);
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
             transition: all 0.25s ease;
         }
 
         .social-btn:hover {
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(124,106,255,0.06);
+            background: rgba(255,45,120,0.05);
             transform: translateY(-2px);
         }
 
@@ -506,8 +571,11 @@
             padding: 32px 48px;
             text-align: center;
             color: var(--muted);
-            font-size: 13px;
+            font-size: 12px;
+            letter-spacing: 0.08em;
         }
+
+        footer span { color: var(--accent); }
 
         /* --- ANIMATIONS --- */
         .fade-up {
@@ -524,11 +592,12 @@
         @media (max-width: 768px) {
             nav { padding: 20px 24px; }
             .nav-links { display: none; }
+            .corner { display: none; }
             .hero { padding: 100px 24px 60px; }
             .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .hero-visual { display: none; }
             .hero-cta { justify-content: center; }
-            .stats-strip { grid-template-columns: repeat(2, 1fr); }
+            .stats-strip { grid-template-columns: repeat(2, 1fr); padding: 0 24px; }
             section { padding: 0 24px; }
             .skills-grid { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
@@ -541,33 +610,40 @@
 
     <div class="cursor" id="cursor"></div>
 
+    <!-- Corner accents (same as loading screen) -->
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
     <!-- NAV -->
     <nav>
-        <a href="#" class="nav-logo">porto<span>.</span></a>
+        <a href="#" class="nav-logo">Juli<span>.</span></a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="btn btn-primary" style="padding: 10px 22px; font-size: 13px;">Hire Me →</a>
+        <a href="#contact" class="btn btn-primary" style="padding: 10px 22px;">Hire Me</a>
     </nav>
 
     <!-- HERO -->
     <div class="hero" id="about">
+        <div class="hero-glow"></div>
         <div class="hero-inner">
             <div class="hero-text">
                 <div class="hero-tag">Available for Work</div>
                 <h1 class="hero-name">
                     Halo, Saya<br>
-                    <span class="line2">Nama Kamu</span>
+                    <span class="line2">Juli Ayu Audia</span>
                 </h1>
                 <p class="hero-desc">
-                    Full-stack developer yang bersemangat membangun pengalaman digital yang bermakna.
-                    Spesialisasi di Laravel, Vue.js, dan desain UI/UX yang berpusat pada pengguna.
+                    Front-End developer yang bersemangat membangun pengalaman digital yang bermakna.
+                    Penuh minat untuk terus belajar di banyak bidang.
                 </p>
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">Lihat Project ↓</a>
+                    <a href="#projects" class="btn btn-primary">Lihat Project</a>
                     <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
                 </div>
             </div>
@@ -575,8 +651,9 @@
                 <div class="avatar-wrap">
                     <div class="avatar-ring"></div>
                     <div class="avatar-img">
-                        {{-- Ganti dengan: <img src="{{ asset('img/foto.jpg') }}" alt="Foto Profil"> --}}
-                        <span class="avatar-placeholder">NK</span>
+                        <img src="{{ asset('img/foto.jpeg') }}" alt="Foto Profil"
+                             onerror="this.style.display='none'; document.querySelector('.avatar-placeholder').style.display='block'">
+                        <span class="avatar-placeholder" style="display:none">JA</span>
                     </div>
                 </div>
             </div>
@@ -586,15 +663,15 @@
     <!-- STATS -->
     <div class="stats-strip fade-up">
         <div class="stat-item">
-            <div class="stat-num">2+</div>
+            <div class="stat-num">1+</div>
             <div class="stat-label">Tahun Pengalaman</div>
         </div>
         <div class="stat-item">
-            <div class="stat-num">20+</div>
+            <div class="stat-num">10+</div>
             <div class="stat-label">Project Selesai</div>
         </div>
         <div class="stat-item">
-            <div class="stat-num">15+</div>
+            <div class="stat-num">10+</div>
             <div class="stat-label">Klien Puas</div>
         </div>
         <div class="stat-item">
@@ -604,131 +681,49 @@
     </div>
 
     <!-- SKILLS -->
-    <section id="skills">
-        <div class="section-label fade-up">Keahlian</div>
-        <h2 class="section-title fade-up">Tech Stack &<br>Kemampuan Saya</h2>
-        <div class="skills-grid">
-            <div class="skill-card fade-up">
-                <span class="skill-icon">🐘</span>
-                <div class="skill-name">Laravel / PHP</div>
-                <div class="skill-desc">Backend development dengan Laravel, REST API, Eloquent ORM, dan Blade templating.</div>
-                <div class="skill-bar-wrap"><div class="skill-bar" style="width: 85%"></div></div>
-            </div>
-            <div class="skill-card fade-up">
-                <span class="skill-icon">💚</span>
-                <div class="skill-name">Vue.js / JavaScript</div>
-                <div class="skill-desc">Frontend interaktif dengan Vue 3 Composition API, Pinia, dan Vite.</div>
-                <div class="skill-bar-wrap"><div class="skill-bar" style="width: 78%"></div></div>
-            </div>
-            <div class="skill-card fade-up">
-                <span class="skill-icon">🗄️</span>
-                <div class="skill-name">Database</div>
-                <div class="skill-desc">MySQL, PostgreSQL, query optimization, dan database design yang efisien.</div>
-                <div class="skill-bar-wrap"><div class="skill-bar" style="width: 80%"></div></div>
-            </div>
-            <div class="skill-card fade-up">
-                <span class="skill-icon">🎨</span>
-                <div class="skill-name">UI/UX Design</div>
-                <div class="skill-desc">Figma, Tailwind CSS, desain yang responsif dan berpusat pada pengalaman pengguna.</div>
-                <div class="skill-bar-wrap"><div class="skill-bar" style="width: 70%"></div></div>
-            </div>
-            <div class="skill-card fade-up">
-                <span class="skill-icon">🐋</span>
-                <div class="skill-name">DevOps</div>
-                <div class="skill-desc">Docker, Git, CI/CD pipeline, dan deployment ke VPS atau cloud server.</div>
-                <div class="skill-bar-wrap"><div class="skill-bar" style="width: 65%"></div></div>
-            </div>
-            <div class="skill-card fade-up">
-                <span class="skill-icon">📱</span>
-                <div class="skill-name">Mobile (Flutter)</div>
-                <div class="skill-desc">Pengembangan aplikasi mobile cross-platform dengan Flutter dan Dart.</div>
-                <div class="skill-bar-wrap"><div class="skill-bar" style="width: 60%"></div></div>
-            </div>
-        </div>
-    </section>
+   @foreach ($skills as $skill)
+<div class="skill-card fade-up">
+    <div class="skill-name">{{ $skill->name }}</div>
+    <div class="skill-desc">{{ $skill->description }}</div>
+    <div class="skill-bar-wrap">
+        <div class="skill-bar" style="width: {{ $skill->level }}%"></div>
+    </div>
+</div>
+@endforeach
 
     <!-- PROJECTS -->
-    <section id="projects">
-        <div class="section-label fade-up">Portfolio</div>
-        <h2 class="section-title fade-up">Project yang<br>Pernah Saya Buat</h2>
-        <div class="projects-grid">
-            <div class="project-card fade-up">
-                <div class="project-thumb">🛒</div>
-                <div class="project-body">
-                    <div class="project-tags">
-                        <span class="tag">Laravel</span>
-                        <span class="tag">Vue.js</span>
-                        <span class="tag">MySQL</span>
-                    </div>
-                    <div class="project-title">E-Commerce Platform</div>
-                    <p class="project-desc">Platform belanja online dengan fitur manajemen produk, keranjang belanja, payment gateway, dan dashboard admin lengkap.</p>
-                </div>
-            </div>
-            <div class="project-card fade-up">
-                <div class="project-thumb">📊</div>
-                <div class="project-body">
-                    <div class="project-tags">
-                        <span class="tag">Laravel</span>
-                        <span class="tag">Tailwind</span>
-                        <span class="tag">Chart.js</span>
-                    </div>
-                    <div class="project-title">Sistem Manajemen Inventory</div>
-                    <p class="project-desc">Aplikasi pengelolaan stok barang dengan laporan real-time, notifikasi stok menipis, dan ekspor data ke Excel/PDF.</p>
-                </div>
-            </div>
-            <div class="project-card fade-up">
-                <div class="project-thumb">🎓</div>
-                <div class="project-body">
-                    <div class="project-tags">
-                        <span class="tag">Laravel</span>
-                        <span class="tag">Livewire</span>
-                        <span class="tag">Alpine.js</span>
-                    </div>
-                    <div class="project-title">Platform E-Learning</div>
-                    <p class="project-desc">Sistem pembelajaran online dengan manajemen kursus, video streaming, kuis interaktif, dan sertifikat otomatis.</p>
-                </div>
-            </div>
-            <div class="project-card fade-up">
-                <div class="project-thumb">📱</div>
-                <div class="project-body">
-                    <div class="project-tags">
-                        <span class="tag">Flutter</span>
-                        <span class="tag">Laravel API</span>
-                        <span class="tag">Firebase</span>
-                    </div>
-                    <div class="project-title">Aplikasi Point of Sale</div>
-                    <p class="project-desc">Aplikasi kasir mobile untuk UMKM dengan fitur scan barcode, laporan penjualan, dan sinkronisasi cloud real-time.</p>
-                </div>
-            </div>
+@foreach ($projects as $project)
+<div class="project-card fade-up">
+    <div class="project-thumb">{{ $project->emoji }}</div>
+    <div class="project-body">
+        <div class="project-tags">
+            @foreach ($project->tags as $tag)
+                <span class="tag">{{ $tag }}</span>
+            @endforeach
         </div>
-    </section>
+        <div class="project-title">{{ $project->title }}</div>
+        <p class="project-desc">{{ $project->description }}</p>
+    </div>
+</div>
+@endforeach
 
     <!-- CONTACT -->
     <section id="contact">
         <div class="contact-wrap fade-up">
             <div class="section-label" style="justify-content: center; display: flex;">Kontak</div>
-            <h2 class="contact-title">Mari Bekerja<br>Sama! 🤝</h2>
+            <h2 class="contact-title">Mari Bekerja<br>Sama!</h2>
             <p class="contact-sub">Terbuka untuk peluang freelance, kolaborasi, atau sekadar ngobrol soal teknologi.</p>
             <div class="social-links">
-                <a href="mailto:email@example.com" class="social-btn">
-                    <span>✉️</span> Email
-                </a>
-                <a href="https://github.com/username" target="_blank" class="social-btn">
-                    <span>🐙</span> GitHub
-                </a>
-                <a href="https://linkedin.com/in/username" target="_blank" class="social-btn">
-                    <span>💼</span> LinkedIn
-                </a>
-                <a href="https://instagram.com/username" target="_blank" class="social-btn">
-                    <span>📸</span> Instagram
-                </a>
+                <a href="mailto:juliayuaudia@gmail.com" class="social-btn">✉ Email</a>
+                <a href="https://github.com/Jujustxr" target="_blank" class="social-btn">⌥ GitHub</a>
+                <a href="https://linkedin.com/in/JuliAyuAudia" target="_blank" class="social-btn">◈ LinkedIn</a>
+                <a href="https://instagram.com/juliiayd" target="_blank" class="social-btn">◎ Instagram</a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-        <p>© {{ date('Y') }} Nama Kamu — Dibuat dengan ❤️ menggunakan Laravel</p>
+        <p>© {{ date('Y') }} <span>Juli Ayu Audia</span>. All rights reserved.</p>
     </footer>
 
     <script>
@@ -743,7 +738,7 @@
             el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
         });
 
-        // Scroll animations
+        // Scroll reveal
         const observer = new IntersectionObserver(entries => {
             entries.forEach((entry, i) => {
                 if (entry.isIntersecting) {
