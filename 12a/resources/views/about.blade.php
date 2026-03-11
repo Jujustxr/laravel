@@ -697,7 +697,6 @@
     </div>
 </section>
 
-    <!-- PROJECTS -->
 <!-- PROJECTS -->
 <section id="projects">
     <div class="section-label fade-up">Portfolio</div>
