@@ -48,8 +48,7 @@
                 <div class="avatar-wrap">
                     <div class="avatar-ring"></div>
                     <div class="avatar-img">
-                        <img src="{{ Vite::asset('resources/img/foto.jpeg') }}" alt="{{ $about['hero']['avatar_alt'] }}"
-                             onerror="this.style.display='none'; document.querySelector('.avatar-placeholder').style.display='block'">
+                        <img src="{{ asset('img/foto.jpeg') }}" alt="{{ $about['hero']['avatar_alt'] }}">
                         <!-- <span class="avatar-placeholder" style="display:none">{{ $about['hero']['avatar_initials'] }}</span> -->
                     </div>
                 </div>

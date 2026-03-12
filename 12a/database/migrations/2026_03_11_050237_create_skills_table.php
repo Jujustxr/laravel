@@ -12,7 +12,7 @@ return new class extends Migration
         $table->id();
         $table->string('name');
         $table->text('description');
-        $table->integer('level');      // 0-100 (untuk skill bar)
+        $table->integer('level');     
         $table->integer('order')->default(0);
         $table->timestamps();
     });
